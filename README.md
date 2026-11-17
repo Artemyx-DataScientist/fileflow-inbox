@@ -40,6 +40,22 @@ Content extraction, OCR, optional Ollama classification, multi-folder workflows,
 
 The initial direction is **C# / .NET with WinUI 3**, **SQLite with FTS5** for the local index, optional **Ollama** integration, and pluggable content handlers. These choices are provisional and will be validated before implementation.
 
+## Future OCR and document understanding
+
+High-quality OCR is a research direction beyond the MVP. The goal is accurate recognition of Russian and other documents while preserving their structure, rather than merely attaching one OCR engine. Quality comparable to ABBYY FineReader is a benchmark to investigate, not a claim about FileFlow today.
+
+The proposed subsystem has three parts:
+
+1. **Document analysis.** Prepare scans when needed, detect text regions, tables, columns, and images, and retain reading order and coordinates.
+2. **Replaceable OCR engines.** Evaluate local models such as [PaddleOCR-VL](https://github.com/PaddlePaddle/PaddleOCR) and [GLM-OCR](https://github.com/zai-org/GLM-OCR); select or combine engines according to the document and allow targeted re-recognition.
+3. **Review and reconstruction.** Let users compare recognized text with the source, inspect uncertain or conflicting results, and correct them. Explore searchable PDF copies and structured output while preserving the original file.
+
+Missing confidence scores must be treated as unknown, not as evidence of a correct result. Dates, document numbers, names, amounts, and other critical fields must not be silently invented or changed by a language model.
+
+Before selecting an engine, compare candidates on representative Russian-language scans and mixed-quality documents, including forms, tables, stamps, and complex layouts. Measure character and word error rates, exact recognition of critical fields, layout and reading order, and practical resource use. Where a properly licensed copy is available, compare results with ABBYY FineReader on the same material.
+
+[PdfCraft](https://github.com/storytold/pdfcraft) and [Folio-OCR](https://github.com/vorojar/Folio-OCR) are references for preprocessing, review, and document workflows. PdfCraft itself describes OCR beyond Latin scripts as a weak area, so it is not assumed to solve Russian recognition. Engine, model-weight, and other asset licenses will be assessed separately before any reuse.
+
 ## Safety and privacy principles
 
 - File contents are untrusted data, never instructions for an AI model.
@@ -60,6 +76,8 @@ FileFlow draws design ideas from these projects. They are references, not depend
 | [Desktop Janitor](https://github.com/electleaf/Desktop-Janitor) | Stable-file detection, local Ollama classification constrained to known categories, confidence-based review, and an idempotent ledger with undo. Its reviewed repository revision declares no license, so it is an architecture reference only. |
 | [AI File Butler](https://github.com/ForgeLabsSoft/ai-file-butler) | Local document extraction and OCR, previews before changes, and using user corrections to improve later suggestions. |
 | [DropIt](https://www.dropitproject.com/) | Flexible filter-to-action rules, profiles, and watched-folder workflows as a reference for future extensibility. |
+| [PdfCraft](https://github.com/storytold/pdfcraft) | Scan preprocessing, OCR review, and searchable PDF workflows as references for document processing. |
+| [Folio-OCR](https://github.com/vorojar/Folio-OCR) | Layout-aware batch OCR and document review as references for local workflows. |
 
 FileFlow combines these directions into a rule-first flow, optional local semantic classification, a review queue for uncertain cases, and visible, journaled operations that can be reversed where supported.
 
@@ -115,6 +133,22 @@ FileFlow должен помогать определять назначение
 
 Начальный вариант — **C# / .NET и WinUI 3**, **SQLite с FTS5** для локального индекса, необязательная интеграция с **Ollama** и подключаемые обработчики содержимого. Эти решения предварительные и будут проверены до начала реализации.
 
+## Будущее OCR и работа со структурой документов
+
+Качественное распознавание — направление исследований после MVP. Цель — точно распознавать русскоязычные и другие документы с сохранением их структуры. Сопоставимость с ABBYY FineReader — ориентир для сравнительных испытаний, а не заявление о достигнутом качестве FileFlow.
+
+Предварительно подсистема делится на три части:
+
+1. **Анализ документа.** При необходимости подготовить скан, определить области текста, таблицы, колонки и изображения, сохранить порядок чтения и координаты фрагментов.
+2. **Заменяемые OCR-движки.** Исследовать локальные модели, например [PaddleOCR-VL](https://github.com/PaddlePaddle/PaddleOCR) и [GLM-OCR](https://github.com/zai-org/GLM-OCR); подбирать или сочетать движки с учётом документа и повторно распознавать отдельные области.
+3. **Проверка и восстановление.** Дать пользователю сравнить распознанное с исходником, увидеть сомнительные и противоречивые результаты и исправить ошибки. Исследовать создание копий PDF с текстовым слоем и структурированного результата, сохраняя исходный файл.
+
+Отсутствие оценки уверенности означает неизвестный результат, а не подтверждённую правильность. Языковая модель не должна незаметно придумывать или изменять даты, номера документов, фамилии, суммы и другие важные данные.
+
+Перед выбором движка сравним кандидатов на представительных русскоязычных сканах и документах разного качества: с бланками, таблицами, печатями и сложной вёрсткой. Будем оценивать ошибки на уровне символов и слов, точность важных реквизитов, сохранение структуры и порядка чтения, а также требования к ресурсам. При наличии лицензии проведём сравнение с ABBYY FineReader на тех же материалах.
+
+[PdfCraft](https://github.com/storytold/pdfcraft) и [Folio-OCR](https://github.com/vorojar/Folio-OCR) служат ориентирами для предобработки, проверки распознавания и работы с документами. Авторы PdfCraft сами указывают на слабую поддержку OCR вне латиницы, поэтому его качество для русского не считается решённой задачей. Лицензии движков, весов моделей и других материалов будут проверяться отдельно до повторного использования.
+
 ## Принципы безопасности и приватности
 
 - Содержимое файлов считается недоверенными данными, а не инструкциями для ИИ-модели.
@@ -135,6 +169,8 @@ FileFlow должен помогать определять назначение
 | [Desktop Janitor](https://github.com/electleaf/Desktop-Janitor) | Проверку завершения записи файла, локальную классификацию через Ollama по заданным категориям, порог уверенности, очередь разбора и журнал с отменой. В проверенной версии репозитория лицензия не указана, поэтому это только архитектурный ориентир. |
 | [AI File Butler](https://github.com/ForgeLabsSoft/ai-file-butler) | Локальное извлечение текста и OCR, предварительный просмотр действий и использование исправлений пользователя для улучшения будущих подсказок. |
 | [DropIt](https://www.dropitproject.com/) | Гибкие правила «фильтр → действие», профили и наблюдение за папками как идеи для расширяемости. |
+| [PdfCraft](https://github.com/storytold/pdfcraft) | Предобработка сканов, проверка распознавания и создание PDF с текстовым слоем как ориентиры для обработки документов. |
+| [Folio-OCR](https://github.com/vorojar/Folio-OCR) | Пакетное распознавание с учётом структуры страницы и проверка документов как ориентиры для локальной работы. |
 
 FileFlow объединяет эти направления в один процесс: сначала детерминированные правила, затем при необходимости локальная семантическая классификация, очередь для неоднозначных случаев и видимый журнал операций с возможностью отмены там, где она поддерживается.
 
