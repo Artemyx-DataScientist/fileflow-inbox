@@ -1,0 +1,10 @@
+<GraceTechnology graceVersion="4.0">
+  <Language>C# (provisional; no application source exists yet)</Language>
+  <Runtime>.NET (version to be decided)</Runtime>
+  <Framework>WinUI 3 is the provisional desktop UI. SQLite with FTS5 and optional Ollama are planned options, not confirmed implementation choices.</Framework>
+  <TestingStack>To be decided; no test framework selected at the pre-MVP stage.</TestingStack>
+  <Observability>No telemetry is planned. A local operation journal is required; logging and diagnostics remain to be decided.</Observability>
+  <OperationalConstraints>
+    <Constraint>The repository is currently at concept/pre-MVP stage. Validate provisional technology choices against approved requirements before implementation.</Constraint>
+  </OperationalConstraints>
+</GraceTechnology>

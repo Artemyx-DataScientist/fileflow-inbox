@@ -1,0 +1,5 @@
+<GraceUXGuidelines graceVersion="4.0">
+  <Applicability>applicable</Applicability>
+  <Audience>Windows users organizing files in Downloads and other user-selected folders, including users handling work documents.</Audience>
+  <Guideline>Make selected folders, active rules, automation mode, planned file operations, and uncertainty visible. Preview actions before applying them, route ambiguous files to review, and provide clear status and undo for supported operations. Define accessibility, keyboard navigation, localization, and visual design requirements before implementation.</Guideline>
+</GraceUXGuidelines>

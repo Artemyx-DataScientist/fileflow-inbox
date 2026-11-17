@@ -1,0 +1,18 @@
+<GraceRequirements graceVersion="4.0">
+  <ProjectName>FileFlow</ProjectName>
+  <Annotation>A planned Windows desktop application for safely triaging user-selected folders through deterministic rules, local metadata, optional content extraction, and optional on-device AI classification.</Annotation>
+  <Keywords>Windows desktop, file inbox, local-first, file triage, deterministic rules, local AI, reversible operations</Keywords>
+  <Goals>
+    <Goal>Turn user-selected folders, starting with Downloads, into a local reviewable inbox that classifies files, suggests destinations, and applies only user-authorized operations.</Goal>
+  </Goals>
+  <Users>
+    <User>Windows users who need a reliable way to triage downloaded and other incoming files, including users managing work documents.</User>
+  </Users>
+  <Constraints>
+    <Constraint>Watch and operate only in folders explicitly selected by the user.</Constraint>
+    <Constraint>Never silently delete, overwrite, or execute files. Preview planned operations, record a local journal, and support undo for supported operations.</Constraint>
+    <Constraint>Treat file names and contents as untrusted data. AI output is advisory, and uncertain classifications require user review.</Constraint>
+    <Constraint>Keep core functionality local and usable without a cloud account or AI provider.</Constraint>
+    <Constraint>Apply deterministic rules first; use optional semantic classification only when content context is useful.</Constraint>
+  </Constraints>
+</GraceRequirements>

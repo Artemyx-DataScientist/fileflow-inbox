@@ -1,0 +1,5 @@
+<GraceDeployment graceVersion="4.0">
+  <Applicability>applicable</Applicability>
+  <Target>Windows desktop application for user-selected local folders; minimum OS version, package format, and release channel are to be decided.</Target>
+  <Notes>The core workflow is intended to run on-device without a hosted service. Define installer, signing, update, recovery, and release gates before distribution.</Notes>
+</GraceDeployment>
