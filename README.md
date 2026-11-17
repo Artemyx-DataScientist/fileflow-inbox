@@ -50,7 +50,20 @@ The initial direction is **C# / .NET with WinUI 3**, **SQLite with FTS5** for th
 
 ## Inspiration and licensing
 
-FileFlow takes conceptual inspiration from existing file organizers. This repository does not include code or assets copied from them. Any future dependency or reused code will be reviewed for license compatibility, and required notices will be preserved.
+FileFlow draws design ideas from these projects. They are references, not dependencies; the ideas below guide the design and are not implemented features yet.
+
+| Project | Ideas informing FileFlow |
+| --- | --- |
+| [Mouzi](https://github.com/hsr88/mouzi) | A lightweight tray workflow, folder-level modes, local activity history, and undo. |
+| [FolderFresh](https://github.com/Trihedron1240/FolderFresh) | Expressive AND/OR rules, profiles, watched folders, previews, and recovery-oriented controls. |
+| [organize](https://github.com/tfeldmann/organize) | Composable rules and filters, metadata/content handlers, dry-run simulation, and extension points. |
+| [Desktop Janitor](https://github.com/electleaf/Desktop-Janitor) | Stable-file detection, local Ollama classification constrained to known categories, confidence-based review, and an idempotent ledger with undo. Its reviewed repository revision declares no license, so it is an architecture reference only. |
+| [AI File Butler](https://github.com/ForgeLabsSoft/ai-file-butler) | Local document extraction and OCR, previews before changes, and using user corrections to improve later suggestions. |
+| [DropIt](https://www.dropitproject.com/) | Flexible filter-to-action rules, profiles, and watched-folder workflows as a reference for future extensibility. |
+
+FileFlow combines these directions into a rule-first flow, optional local semantic classification, a review queue for uncertain cases, and visible, journaled operations that can be reversed where supported.
+
+These projects are design references. This repository contains no code or assets copied from them. Any future dependency or code reuse will be reviewed for license compatibility, and required notices will be preserved.
 
 The project is licensed under the [MIT License](LICENSE).
 
@@ -110,9 +123,22 @@ FileFlow должен помогать определять назначение
 - ИИ предлагает варианты; действия определяются правилами и настройками подтверждения.
 - Для основного сценария не требуется облачный сервис.
 
-## Идеи и лицензирование
+## Проекты, которые вдохновляют FileFlow
 
-Концепция FileFlow опирается на общие идеи существующих файловых органайзеров. В этом репозитории нет скопированного из них кода или графических материалов. Будущие зависимости и повторно используемый код будут проверяться на совместимость лицензий с сохранением необходимых уведомлений.
+В проекте используются идеи из следующих файловых органайзеров. Это ориентиры для проектирования, а не зависимости; перечисленные возможности пока не реализованы.
+
+| Проект | Что берём как идею для FileFlow |
+| --- | --- |
+| [Mouzi](https://github.com/hsr88/mouzi) | Лёгкий сценарий через системный трей, режимы для отдельных папок, локальную историю действий и отмену. |
+| [FolderFresh](https://github.com/Trihedron1240/FolderFresh) | Выразительные правила с условиями AND/OR, профили, наблюдение за папками, предварительный просмотр и средства восстановления. |
+| [organize](https://github.com/tfeldmann/organize) | Составные правила и фильтры, обработчики метаданных и содержимого, пробный запуск без изменений и точки расширения. |
+| [Desktop Janitor](https://github.com/electleaf/Desktop-Janitor) | Проверку завершения записи файла, локальную классификацию через Ollama по заданным категориям, порог уверенности, очередь разбора и журнал с отменой. В проверенной версии репозитория лицензия не указана, поэтому это только архитектурный ориентир. |
+| [AI File Butler](https://github.com/ForgeLabsSoft/ai-file-butler) | Локальное извлечение текста и OCR, предварительный просмотр действий и использование исправлений пользователя для улучшения будущих подсказок. |
+| [DropIt](https://www.dropitproject.com/) | Гибкие правила «фильтр → действие», профили и наблюдение за папками как идеи для расширяемости. |
+
+FileFlow объединяет эти направления в один процесс: сначала детерминированные правила, затем при необходимости локальная семантическая классификация, очередь для неоднозначных случаев и видимый журнал операций с возможностью отмены там, где она поддерживается.
+
+Эти проекты служат источниками идей. Код и графические материалы из них в репозиторий не копируются. Будущие зависимости или повторное использование кода будут отдельно проверяться на совместимость лицензий, а необходимые уведомления будут сохранены.
 
 Проект распространяется по [лицензии MIT](LICENSE).
 
